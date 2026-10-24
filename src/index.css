@@ -1,0 +1,154 @@
+@import "tailwindcss";
+
+@theme {
+  --color-primary: #FAF6F0;
+  --color-card: #FFFFFF;
+  --color-nav: #F0EDE6;
+  --color-accent: #476F86;
+  --color-accent-glow: rgba(71, 111, 134, 0.18);
+  --color-danger: #B5444D;
+  --color-gold: #D4A853;
+  --color-gold-text: #876422;
+  --color-border: #E4DDD3;
+  --color-border-light: #D6CFC5;
+  --color-surface: #F5F1EB;
+  --color-muted: #544E47;
+  --color-muted-dark: #645D54;
+  --color-muted-darker: #71695F;
+  --font-sans: "Jost", sans-serif;
+  --font-serif: "Playfair Display", serif;
+  --font-mono: "JetBrains Mono", monospace;
+  --shadow-card: 0 1px 2px rgba(84, 78, 71, 0.06);
+  --shadow-raised: 0 4px 12px rgba(84, 78, 71, 0.10);
+  /* Same elevation step, mirrored, for a surface docked to the bottom edge —
+     a downward shadow there falls off-screen and reads as no elevation. */
+  --shadow-raised-up: 0 -4px 12px rgba(84, 78, 71, 0.10);
+  --shadow-overlay: 0 12px 32px rgba(84, 78, 71, 0.18);
+}
+
+/* One focus ring for the whole app, in the palette. Fields already showed the
+   browser's ring on every tap (a text field always matches :focus-visible), so
+   this recolours what was there rather than adding one; they sit flush, since an
+   offset ring around a bordered field reads as a second border. */
+@layer base {
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+  :is(input, textarea, select):focus-visible {
+    outline-offset: 0;
+  }
+}
+
+@utility font-serif {
+  font-family: var(--font-serif);
+}
+
+@utility hero-photo {
+  width: 180px;
+  max-width: 50%;
+  border-radius: 1rem;
+  opacity: 0.85;
+  mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+  -webkit-mask-image: linear-gradient(to bottom, black 70%, transparent 100%);
+}
+
+/* Three elevation steps, replacing the single flat shadow that used to sit on
+   everything. Rest → raised (active/hover) → overlay (sheets, toasts). */
+@utility elev-card {
+  box-shadow: var(--shadow-card);
+}
+@utility elev-raised {
+  box-shadow: var(--shadow-raised);
+}
+@utility elev-raised-up {
+  box-shadow: var(--shadow-raised-up);
+}
+@utility elev-overlay {
+  box-shadow: var(--shadow-overlay);
+}
+
+/* Séance mode reads at arm's length, mid-effort, on a 13" screen. The app's
+   normal 11–13px idiom does not survive that, so this scale is deliberately
+   larger and is used only inside the séance surfaces. */
+@utility seance-title {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;   /* 28px */
+  line-height: 1.15;
+  font-weight: 700;
+}
+@utility seance-figure {
+  font-family: var(--font-mono);
+  font-size: 2rem;      /* 32px */
+  line-height: 1.1;
+  font-weight: 700;
+  font-variant-numeric: tabular-nums;  /* digits must not reflow as they change */
+}
+@utility seance-control {
+  font-size: 1.0625rem; /* 17px */
+  line-height: 1.4;
+}
+
+/* Validating a set is the one moment that earns motion: it confirms the rep
+   landed. Everything else in séance mode is static on purpose. */
+@keyframes seance-validate {
+  0%   { transform: scale(1);    opacity: 1; }
+  40%  { transform: scale(1.04); opacity: 1; }
+  100% { transform: scale(1);    opacity: 1; }
+}
+@utility motion-validate {
+  animation: seance-validate 200ms ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  .motion-validate { animation: none; }
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: #D6CFC5;
+  border-radius: 2px;
+}
+
+/* Number input spinners removal */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type="number"] {
+  -moz-appearance: textfield;
+}
+
+/* Coach chat: markdown rendering inside assistant bubbles.
+   Tailwind v4 preflight resets lists/headings/emphasis, so restore them here,
+   scoped to the coach bubble. */
+.coach-md > :first-child { margin-top: 0; }
+.coach-md > :last-child { margin-bottom: 0; }
+.coach-md p { margin: 0 0 0.5rem; }
+.coach-md ul, .coach-md ol { margin: 0.25rem 0 0.6rem; padding-left: 1.3rem; }
+.coach-md ul { list-style: disc; }
+.coach-md ol { list-style: decimal; }
+.coach-md li { margin: 0.15rem 0; }
+.coach-md li > p { margin: 0; }
+.coach-md strong { font-weight: 700; }
+.coach-md em { font-style: italic; }
+.coach-md h1, .coach-md h2, .coach-md h3, .coach-md h4 { font-weight: 700; margin: 0.6rem 0 0.3rem; line-height: 1.25; }
+.coach-md h1 { font-size: 1.1em; }
+.coach-md h2 { font-size: 1.05em; }
+.coach-md h3, .coach-md h4 { font-size: 1em; }
+.coach-md a { color: #476F86; text-decoration: underline; }
+.coach-md code { font-family: var(--font-mono, monospace); font-size: 0.9em; background: #F5F1EB; padding: 0.05rem 0.25rem; border-radius: 0.25rem; }
+.coach-md blockquote { border-left: 3px solid #E4DDD3; padding-left: 0.6rem; margin: 0.4rem 0; color: #544E47; }

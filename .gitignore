@@ -1,0 +1,77 @@
+# Logs
+logs
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Dependencies
+node_modules
+
+# Build
+dist
+dist-ssr
+
+# Environment
+*.local
+.env*
+!.env.example
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw?
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Worktrees
+.worktrees/
+
+# Backup and export files
+fittrack-backup*.json
+*.backup
+*.bak
+*.dump
+*.sql
+# Exception: schema files are source artifacts, not dumps
+!netlify/functions/lib/schema.sql
+
+# Plan files (working artifacts — stored in ~/.claude/plans/, not in repo)
+docs/plans/
+docs/archive/plans/
+
+# Claude Code — local state only; skills and shared config are tracked
+.claude/agent-memory/
+.claude/agent-memory-local/
+.claude/worktrees/
+
+# Personal data — real profiles kept locally, .example templates tracked
+docs/claude-project/profil.md
+docs/claude-project/passation-coach-llm.md
+docs/archive/profil_utilisatrice.md
+docs/archive/programme_actuel.md
+
+# Subagent-driven-development scratch (ledger, not for the repo)
+.superpowers/
+
+# Playwright MCP artifacts (snapshots, console logs, screenshots from manual QA)
+.playwright-mcp/
+
+# Local Netlify folder
+.netlify
+
+# Netlify dev Deno lockfile (local artifact)
+deno.lock
+
+# Coach eval: model replies and any real export (health data, same policy as profil.md)
+scripts/eval-out/
+scripts/eval-fixtures/

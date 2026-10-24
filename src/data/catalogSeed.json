@@ -1,0 +1,1471 @@
+{
+  "version": 1,
+  "exercises": [
+    {
+      "name": "Développé couché au sol",
+      "group": "Upper Body",
+      "description": "Allongée au sol, un haltère dans chaque main, pousser vers le haut",
+      "formCues": "Coudes à 45° du corps, ne pas cambrer le dos, descendre jusqu'aux pectoraux",
+      "intent": "La poussée horizontale : pectoraux, triceps et avant des épaules ensemble. Le sol arrête la descente avant que l'épaule ne s'ouvre trop, ce qui rend le mouvement sûr sans banc.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Développé incliné",
+      "group": "Upper Body",
+      "description": "Comme le développé couché, un haltère dans chaque main, mais dos incliné à 30-45° sur un banc",
+      "formCues": "Mêmes règles que le couché, l'angle cible le haut des pectoraux",
+      "intent": "L'angle déplace le travail vers le haut des pectoraux, sous la clavicule, que le développé au sol n'atteint pas. À la salle uniquement : il demande un banc inclinable.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "bench",
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Développé épaules",
+      "group": "Upper Body",
+      "description": "Haltères à hauteur d'épaules, pousser vers le haut",
+      "formCues": "Dos droit, ne pas cambrer, bras tendus en haut sans verrouiller les coudes",
+      "intent": "Le mouvement d'épaules qui accepte le plus de charge : c'est lui qui construit la force, là où les élévations latérales ne font que dessiner la ligne.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Pompes",
+      "group": "Upper Body",
+      "description": "Mains au sol largeur épaules, corps gainé, descendre la poitrine au sol",
+      "formCues": "Corps droit de la tête aux pieds, coudes à 45°",
+      "intent": "Pousser en tenant tout le corps gainé : c'est ce qui les distingue du développé au sol, où le dos est posé et où seuls les bras travaillent.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Dips sur chaise",
+      "group": "Upper Body",
+      "description": "Bras en appui sur une chaise, descendre le corps en pliant les coudes",
+      "formCues": "Coudes vers l'arrière, ne pas descendre trop bas pour protéger les épaules",
+      "intent": "Les triceps sous le poids du corps, donc plus lourd que n'importe quelle extension avec haltère, et sans rien à charger. En échange l'épaule travaille en position fermée, à doser les jours où elle est sensible.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "chair"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Élévations latérales",
+      "group": "Upper Body",
+      "description": "Debout, un haltère dans chaque main, monter les bras sur les côtés",
+      "formCues": "Légère flexion des coudes, monter jusqu'à hauteur d'épaules, contrôler la descente",
+      "intent": "Cible la partie externe de l'épaule, celle qui donne la ligne des épaules.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Élévations frontales",
+      "group": "Upper Body",
+      "description": "Debout, un haltère dans chaque main, monter les bras devant soi",
+      "formCues": "Bras quasi tendus, monter jusqu'à hauteur d'épaules, ne pas balancer le corps",
+      "intent": "L'avant de l'épaule, déjà largement servi par tout ce qui pousse au-dessus de la tête. À noter à la main plutôt qu'à programmer.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": false,
+      "inactiveReason": "Redondant avec les élévations latérales",
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Oiseau",
+      "group": "Upper Body",
+      "description": "Penchée en avant, un haltère dans chaque main, bras écartés en arrière comme des ailes",
+      "formCues": "Dos plat, serrer les omoplates en haut du mouvement",
+      "intent": "L'arrière de l'épaule et le milieu du dos : le contrepoids de tout ce qui pousse devant. C'est ce qui ouvre les épaules au lieu de les enrouler.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Rowing haltères",
+      "group": "Upper Body",
+      "description": "Penchée en avant, tirer les haltères vers les hanches",
+      "formCues": "Dos plat, coudes le long du corps, serrer les omoplates",
+      "intent": "Le tirage horizontal chargeable : épaisseur du dos et posture, avec une charge qui se choisit — là où la traction australienne dépend du poids du corps. C'est la position penchée qui lâche en premier, pas les bras.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Tirage vertical élastique",
+      "group": "Upper Body",
+      "description": "Debout ou à genoux, tirer l'élastique du haut vers le bas devant soi",
+      "formCues": "Tirer les coudes vers le bas et l'arrière, buste légèrement en arrière. Élastique accroché en hauteur (porte, barre de traction)",
+      "intent": "Le tirage vertical quand la traction est encore trop dure : même direction de travail, résistance réglable. Il demande un élastique long à accrocher en hauteur, qui manque encore à la maison — en attendant, c'est la traction négative qui joue ce rôle.",
+      "implementTypes": [
+        "elastic"
+      ],
+      "equipmentNeeds": [
+        "elastic_upper"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Tirage menton",
+      "group": "Upper Body",
+      "description": "Haltères devant les cuisses, tirer vers le menton en montant les coudes",
+      "formCues": "Coudes au-dessus des mains, monter jusqu'à hauteur d'épaules max, ne pas hausser les épaules",
+      "intent": "Épaules et trapèzes dans le même mouvement, avec plus de charge que les élévations latérales. En contrepartie la position n'est pas la plus tendre pour l'épaule : à garder pour les semaines où elle va bien.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Arnold press",
+      "group": "Upper Body",
+      "description": "Assise ou debout, haltères devant le visage paumes vers soi, tourner et pousser vers le haut",
+      "formCues": "Rotation fluide pendant la montée, finir paumes vers l'avant en haut",
+      "intent": "Un développé épaules qui balaie l'épaule entière grâce à la rotation, avant et côté dans le même mouvement. Plus complet que le développé classique, mais on y charge moins lourd.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Curl biceps",
+      "group": "Upper Body",
+      "description": "Debout, un haltère dans chaque main, plier les coudes pour monter les poids",
+      "formCues": "Coudes collés au corps, ne pas balancer, contrôler la descente",
+      "intent": "Le biceps dans son rôle le plus direct — mais il travaille déjà à chaque tirage. C'est un exercice de finition, pas une base de séance.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Curl marteau",
+      "group": "Upper Body",
+      "description": "Comme le curl biceps, un haltère dans chaque main, mais pouces vers le haut (prise neutre)",
+      "formCues": "Même technique que le curl, la prise neutre cible l'avant-bras en plus",
+      "intent": "La prise neutre ajoute le muscle sous le biceps et l'avant-bras. C'est celui qui améliore la préhension, donc le dead hang et les tractions.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Extension triceps",
+      "group": "Upper Body",
+      "description": "Un haltère tenu à deux mains derrière la tête, étendre les bras vers le haut",
+      "formCues": "Coudes fixes pointés vers le plafond, seuls les avant-bras bougent",
+      "intent": "La seule position qui étire la longue portion du triceps : bras au-dessus de la tête. C'est l'exercice de l'arrière du bras, que ni les pompes ni les dips ne remplacent.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Kickback triceps",
+      "group": "Upper Body",
+      "description": "Penchée, un bras en appui, un haltère dans l'autre main, étendre ce bras en arrière",
+      "formCues": "Coude fixe le long du corps, étendre complètement, contrôler le retour. Reps PAR BRAS",
+      "intent": "Le triceps bras par bras, sur une contraction courte : léger par nature, utile en fin de séance une fois les gros mouvements passés.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Shrugs",
+      "group": "Upper Body",
+      "description": "Debout, haltères en main le long du corps, hausser les épaules",
+      "formCues": "Monter les épaules vers les oreilles, maintenir 1 seconde en haut",
+      "intent": "Les trapèzes supérieurs, ceux qui portent la nuque : utile quand les épaules tirent après une journée assise. Ce n'est pas un exercice de ligne d'épaules : le volume gagné ici épaissit la nuque, il n'élargit pas les épaules.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Traction pronation",
+      "group": "Upper Body",
+      "description": "Suspendue à la barre, paumes vers l'avant, tirer le menton au-dessus de la barre",
+      "formCues": "Épaules basses avant de tirer, monter sans à-coup, descendre en contrôle jusqu'aux bras tendus",
+      "intent": "Le mouvement de tirage le plus complet : dos, biceps et gainage. C'est celui qui dessine le haut du dos.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "haute",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Traction supination",
+      "group": "Upper Body",
+      "description": "Suspendue à la barre, paumes vers soi, tirer le menton au-dessus de la barre",
+      "formCues": "Coudes le long du corps, épaules basses, descendre bras tendus",
+      "intent": "Même tirage que la pronation mais les biceps travaillent davantage — souvent la première traction complète réussie.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "haute",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Traction négative",
+      "group": "Upper Body",
+      "description": "Partir menton au-dessus de la barre (en sautant ou en descendant d'un appui), paumes vers l'avant, et descendre le plus lentement possible",
+      "formCues": "Viser 3 à 5 secondes de descente, garder les épaules basses, s'arrêter avant que la descente devienne une chute",
+      "intent": "La façon de construire la traction complète : la phase de descente supporte plus de charge que la montée. C'est une progression, pas une version au rabais.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "haute",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Traction supination négative",
+      "group": "Upper Body",
+      "description": "Comme la traction négative mais paumes vers soi : partir menton au-dessus de la barre et descendre lentement",
+      "formCues": "3 à 5 secondes de descente, coudes le long du corps, bras complètement tendus en bas",
+      "intent": "La progression vers la traction supination, biceps plus sollicités que sur la version pronation.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "haute",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Traction australienne",
+      "group": "Upper Body",
+      "description": "Barre réglée bas, allongée dessous, corps gainé talons au sol, tirer la poitrine vers la barre",
+      "formCues": "Corps droit de la tête aux talons, serrer les omoplates en haut, plus les pieds sont loin plus c'est dur",
+      "intent": "Le tirage horizontal : il travaille le milieu du dos et la posture, là où la traction verticale travaille la largeur.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "basse",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Dead hang",
+      "group": "Upper Body",
+      "description": "Suspendue à la barre bras tendus, tenir",
+      "formCues": "Épaules actives (pas complètement relâchées), respiration calme, lâcher avant de perdre la prise",
+      "intent": "Construit la force de préhension et décomprime les épaules — c'est ce qui permet de tenir assez longtemps pour progresser sur les tractions.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "haute",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null,
+      "metric": "seconds"
+    },
+    {
+      "name": "Pompes négatives",
+      "group": "Upper Body",
+      "description": "Partir en position haute de pompe et descendre la poitrine au sol le plus lentement possible, puis remonter à genoux",
+      "formCues": "3 à 5 secondes de descente, corps gainé du début à la fin, remonter sans chercher à forcer",
+      "intent": "La progression vers la pompe complète : la descente contrôlée construit la force que la montée n'a pas encore.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Dips négatifs sur chaise",
+      "group": "Upper Body",
+      "description": "Bras en appui sur une chaise, descendre le corps très lentement puis remonter en s'aidant des jambes",
+      "formCues": "3 à 5 secondes de descente, coudes vers l'arrière, ne pas descendre trop bas pour protéger les épaules",
+      "intent": "Même logique que les pompes négatives, appliquée aux triceps et à l'avant des épaules.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "chair"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Rowing unilatéral",
+      "group": "Upper Body",
+      "description": "Un genou et une main en appui sur une chaise, un haltère dans l'autre main, tirer vers la hanche",
+      "formCues": "Dos plat et parallèle au sol, coude le long du corps, serrer l'omoplate en haut. Reps PAR BRAS",
+      "intent": "Le tirage bras par bras : il laisse aller plus lourd que le rowing à deux mains et rattrape le côté faible.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell",
+        "chair"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Écarté au sol",
+      "group": "Upper Body",
+      "description": "Allongée au sol, un haltère dans chaque main bras quasi tendus, ouvrir les bras sur les côtés puis les refermer au-dessus de la poitrine",
+      "formCues": "Légère flexion des coudes maintenue tout du long, descendre jusqu'à ce que les bras touchent le sol, refermer sans à-coup",
+      "intent": "Étire et travaille les pectoraux en largeur là où le développé les travaille en poussée.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Pull-over",
+      "group": "Upper Body",
+      "description": "Allongée au sol, un haltère tenu à deux mains au-dessus de la poitrine, descendre les bras derrière la tête puis revenir",
+      "formCues": "Coudes légèrement fléchis et fixes, bas du dos plaqué au sol, ne pas descendre plus bas que l'épaule permet",
+      "intent": "Ouvre la cage thoracique et travaille le grand dorsal — un complément aux tractions plutôt qu'un remplacement.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Curl concentration",
+      "group": "Upper Body",
+      "description": "Assise, coude calé contre l'intérieur de la cuisse, un haltère dans cette main, monter l'avant-bras",
+      "formCues": "Coude immobile, montée sans élan, descente complète bras tendu. Reps PAR BRAS",
+      "intent": "Le curl le plus strict : impossible de tricher avec le dos, donc le biceps prend tout.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Squat",
+      "group": "Lower Body",
+      "description": "Debout, pieds largeur épaules, une barre chargeable ou un haltère dans chaque main le long du corps, descendre comme pour s'asseoir",
+      "formCues": "Charges le long du corps pour l'équilibre, genoux vers l'extérieur, descendre cuisses parallèles au sol",
+      "intent": "La base du bas du corps : cuisses et fessiers ensemble. Tout le reste des jambes se construit dessus.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "bar"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 18,
+        "unit": "per_hand"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Squat sumo",
+      "group": "Lower Body",
+      "description": "Pieds très écartés, pointes dehors, une barre chargeable ou un haltère tenu à deux mains devant soi",
+      "formCues": "Genoux suivent la direction des pieds, dos droit, descendre le bassin",
+      "intent": "Pieds très écartés : le travail se déplace vers l'intérieur des cuisses et les fessiers, et le buste reste plus droit qu'au squat classique. Une bonne option quand le bas du dos demande à être ménagé.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "bar"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Fentes",
+      "group": "Lower Body",
+      "description": "Un haltère dans chaque main, avancer un pied et descendre le genou arrière",
+      "formCues": "Genou avant aligné avec la cheville, buste droit. Reps comptées PAR JAMBE",
+      "intent": "Une jambe à la fois : la charge encaissée par chaque jambe double sans toucher aux haltères, et l'équilibre travaille en prime. C'est là que les écarts de force entre la gauche et la droite se voient.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Fentes bulgares",
+      "group": "Lower Body",
+      "description": "Un haltère dans chaque main, pied arrière posé sur un support stable (chaise, canapé), descendre le genou arrière",
+      "formCues": "Buste droit, genou avant aligné cheville, pied arrière surélevé. Reps comptées PAR JAMBE",
+      "intent": "La fente la plus dure du catalogue, presque tout le poids sur la jambe avant. Quand les haltères atteignent leur charge maximale, c'est elle qui fournit la difficulté que la charge ne peut plus donner.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell",
+        "chair"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Step up",
+      "group": "Lower Body",
+      "description": "Un haltère dans chaque main, monter sur une chaise ou une marche en poussant sur une jambe, redescendre en contrôle",
+      "formCues": "Genou aligné avec la cheville, pousser dans le talon de la jambe d'appui, buste droit, pas d'élan. Reps comptées PAR JAMBE",
+      "intent": "Monter sur une jambe : fessiers et cuisses, sans impact et sans descente profonde du genou. Le mouvement le plus proche d'un geste quotidien, donc celui qui se transfère le mieux hors séance.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell",
+        "chair"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Soulevé de terre roumain",
+      "group": "Lower Body",
+      "description": "Debout, une barre chargeable ou un haltère dans chaque main devant les cuisses, descendre en poussant les fesses en arrière",
+      "formCues": "Jambes quasi tendues (légère flexion), dos plat, charges qui glissent le long des jambes",
+      "intent": "La chaîne arrière — ischio-jambiers et fessiers — que le squat ne fait qu'effleurer. C'est le complément obligatoire du squat, jamais son remplaçant.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "bar"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 18,
+        "unit": "per_hand"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Donkey kick",
+      "group": "Lower Body",
+      "description": "À quatre pattes, pousser un pied vers le plafond en gardant le genou plié à 90°",
+      "formCues": "Dos plat, ne pas cambrer, serrer le fessier en haut du mouvement. Progression : poids du corps → lest de cheville. Reps PAR JAMBE",
+      "intent": "Le grand fessier isolé, sans que les cuisses prennent le travail à leur compte. La charge y est faible par construction : c'est un exercice de volume et de sensation, en fin de séance jambes.",
+      "implementTypes": [
+        "ankle_weight"
+      ],
+      "equipmentNeeds": [
+        "ankle_weight"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 1,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Fire hydrant",
+      "group": "Lower Body",
+      "description": "À quatre pattes, écarter le genou sur le côté en gardant l'angle à 90°",
+      "formCues": "Dos stable, ne pas tourner le bassin, mouvement contrôlé. Progression : poids du corps → lest de cheville. Reps PAR CÔTÉ",
+      "intent": "Fessier moyen, le stabilisateur du bassin : peu spectaculaire, mais c'est lui qui tient la posture en fente et en squat.",
+      "implementTypes": [
+        "ankle_weight"
+      ],
+      "equipmentNeeds": [
+        "ankle_weight"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Abducteurs élastique",
+      "group": "Lower Body",
+      "description": "Élastique au-dessus des genoux, écarter les jambes (debout ou assise)",
+      "formCues": "Mouvement contrôlé, résister au retour de l'élastique. Reps comptées PAR CÔTÉ",
+      "intent": "Le même fessier moyen que le fire hydrant, mais en résistance continue et debout. Facile à caser en échauffement pour réveiller le bassin avant les squats et les fentes.",
+      "implementTypes": [
+        "elastic"
+      ],
+      "equipmentNeeds": [
+        "elastic_hips"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Pont fessier",
+      "group": "Lower Body",
+      "description": "Dos au sol, pieds à plat, un haltère posé sur les hanches, monter les hanches vers le plafond",
+      "formCues": "Serrer les fessiers en haut, maintenir 1 seconde, ne pas cambrer le dos",
+      "intent": "L'extension de hanche sans que le dos ni les genoux encaissent quoi que ce soit : le fessier travaille seul. Le plus sûr des exercices de fessiers, et le premier à garder un jour de fatigue.",
+      "implementTypes": [
+        "dumbbell"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Pont fessier unilatéral",
+      "group": "Lower Body",
+      "description": "Dos au sol, un pied au sol, autre jambe tendue en l'air ou pliée poitrine, pousser les hanches vers le haut avec une seule jambe",
+      "formCues": "Serrer le fessier en haut, hanches alignées (pas d'inclinaison latérale), ne pas cambrer. Progression : poids du corps → lest cheville sur jambe travaillante → pied surélevé. Reps PAR JAMBE",
+      "intent": "Le pont fessier sur une jambe : la charge double sans matériel, et le bassin qui doit rester droit fait travailler le fessier moyen en plus du grand.",
+      "implementTypes": [
+        "ankle_weight"
+      ],
+      "equipmentNeeds": [
+        "ankle_weight"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 1,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Squat gobelet",
+      "group": "Lower Body",
+      "description": "Un haltère ou une barre tenu à deux mains contre la poitrine, descendre en squat",
+      "formCues": "Coudes vers l'intérieur, buste plus vertical qu'au squat classique, descendre cuisses parallèles",
+      "intent": "Le squat le plus facile à tenir droite : la charge devant force le buste à rester vertical, ce qui protège le bas du dos.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Fente arrière",
+      "group": "Lower Body",
+      "description": "Un haltère dans chaque main, reculer un pied et descendre le genou arrière vers le sol",
+      "formCues": "Genou avant aligné avec la cheville, buste droit, reculer plutôt qu'avancer ménage le genou. Reps PAR JAMBE",
+      "intent": "La fente la plus douce pour les genoux, et celle qui sollicite le plus les fessiers.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Fente latérale",
+      "group": "Lower Body",
+      "description": "Un haltère dans chaque main, faire un grand pas sur le côté et s'asseoir sur cette jambe, l'autre restant tendue",
+      "formCues": "Pied de la jambe tendue à plat, fesses en arrière, dos plat. Reps PAR JAMBE",
+      "intent": "Le seul mouvement de la liste qui travaille sur le côté : adducteurs et fessiers moyens, ceux qui tiennent le bassin.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Mollets debout",
+      "group": "Lower Body",
+      "description": "Debout, un haltère dans chaque main, monter sur la pointe des pieds puis redescendre",
+      "formCues": "Monter le plus haut possible, marquer un temps en haut, descendre lentement talons vers le sol",
+      "intent": "Les mollets, que rien d'autre dans le programme ne travaille directement — utile pour la ligne de la jambe.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Chaise murale",
+      "group": "Lower Body",
+      "description": "Dos plaqué au mur, cuisses parallèles au sol comme sur un siège invisible, tenir",
+      "formCues": "Genoux à 90°, dos entièrement au mur, poids dans les talons, respirer normalement",
+      "intent": "Un travail isométrique des cuisses sans aucune charge — utile un jour de fatigue ou en fin de séance jambes.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null,
+      "metric": "seconds"
+    },
+    {
+      "name": "Soulevé de terre roumain unilatéral",
+      "group": "Lower Body",
+      "description": "Un haltère dans chaque main, en appui sur une jambe, se pencher en avant en levant l'autre jambe derrière soi",
+      "formCues": "Dos plat, hanches à niveau (pas de rotation), jambe d'appui légèrement fléchie. Reps PAR JAMBE",
+      "intent": "Ischio-jambiers et fessiers, plus l'équilibre : il corrige les différences de force entre les deux jambes.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Burpees",
+      "group": "Full Body",
+      "description": "Squat, mains au sol, pompe, remonter, sauter. Enchaîner",
+      "formCues": "Mouvement fluide, ne pas sacrifier la forme pour la vitesse",
+      "intent": "Le cardio le plus dense en temps : tout le corps, essoufflement immédiat, aucun matériel. En contrepartie c'est de l'impact répété, à sauter les jours où les genoux tirent.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Thruster",
+      "group": "Full Body",
+      "description": "Squat avec haltères sur les épaules, remonter et pousser au-dessus",
+      "formCues": "Utiliser l'élan du squat pour pousser, bras tendus en haut",
+      "intent": "Squat et développé enchaînés : deux fois plus de travail par répétition, et le souffle qui monte comme sur du cardio. Le mouvement à choisir quand la séance doit être courte.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Clean & press",
+      "group": "Full Body",
+      "description": "Haltères au sol, tirer jusqu'aux épaules, puis pousser au-dessus de la tête",
+      "formCues": "Mouvement explosif pour le clean, stabiliser avant le press",
+      "intent": "Du sol jusqu'au-dessus de la tête en un seul geste : le trajet complet, là où le thruster et le squat press partent déjà des épaules. Il entretient la vitesse et la coordination, que les séries lentes ne donnent pas.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Turkish get-up",
+      "group": "Full Body",
+      "description": "Du sol à debout, un haltère bras tendu vers le plafond",
+      "formCues": "Garder le bras tendu et le regard sur l'haltère tout au long. Reps PAR CÔTÉ",
+      "intent": "Un exercice de contrôle plus que de force : l'épaule doit rester stable pendant que tout le corps change de position. Rien d'autre dans le catalogue ne travaille cette coordination-là.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Squat press",
+      "group": "Full Body",
+      "description": "Squat avec haltères, pousser les haltères vers le haut en remontant",
+      "formCues": "Descendre en squat complet, pousser en se relevant",
+      "intent": "Très proche du thruster, en plus posé : la poussée part une fois debout au lieu d'enchaîner sur l'élan du squat. Les épaules travaillent davantage, le souffle un peu moins.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Renegade row",
+      "group": "Full Body",
+      "description": "En position de pompe, mains sur les haltères, tirer un haltère vers la hanche en gardant le bassin stable",
+      "formCues": "Pieds écartés pour la stabilité, ne pas laisser tourner le bassin, alterner les bras. Reps PAR BRAS",
+      "intent": "Combine tirage et gainage anti-rotation, exigeant pour le bas du dos ; le rowing unilatéral et le gainage planche font un travail proche avec moins de charge sur le dos.",
+      "implementTypes": [
+        "dumbbell",
+        "dual_bar_symmetric"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": false,
+      "inactiveReason": "Gainage sous charge retiré du catalogue de départ",
+      "replacedBy": "Rowing unilatéral, gainage planche",
+      "deactivatedAt": null
+    },
+    {
+      "name": "Gainage planche",
+      "group": "Core",
+      "description": "Position pompe ou sur les avant-bras, corps droit, tenir",
+      "formCues": "Contracter les abdos et les fessiers, ne pas creuser le dos ni monter les fesses",
+      "intent": "Apprend au tronc à rester solide sans bouger — c'est ce qui protège le bas du dos sur tous les autres exercices.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null,
+      "metric": "seconds"
+    },
+    {
+      "name": "Gainage latéral",
+      "group": "Core",
+      "description": "Sur un avant-bras, de profil, corps droit, tenir",
+      "formCues": "Hanches alignées (pas de rotation), contracter les obliques. Temps PAR CÔTÉ",
+      "intent": "Les obliques sans aucune flexion du dos : une façon de les travailler sans flexion chargée du buste.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": true,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null,
+      "metric": "seconds"
+    },
+    {
+      "name": "Crunch",
+      "group": "Core",
+      "description": "Dos au sol, genoux pliés, relever le buste",
+      "formCues": "Décoller les omoplates, ne pas tirer sur la nuque, expirer en montant",
+      "intent": "Le grand droit, la partie visible des abdos, sur une amplitude courte. C'est de la flexion du dos répétée : à doser plutôt qu'à empiler, et jamais en remplacement du gainage.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Relevé de jambes",
+      "group": "Core",
+      "description": "Dos au sol, monter les jambes tendues vers le plafond",
+      "formCues": "Bas du dos plaqué au sol, descendre lentement sans toucher le sol",
+      "intent": "Le bas du ventre, que le crunch ne touche pas : ici ce sont les jambes qui font levier et non le buste. Si le dos se décolle, c'est que la version genoux pliés reste la bonne.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Russian twist",
+      "group": "Core",
+      "description": "Assise, pieds décollés ou au sol, tourner le buste avec un haltère",
+      "formCues": "Dos à 45°, tourner par le buste pas par les bras, contrôler le mouvement",
+      "intent": "Rotation du buste sous charge. C'est une flexion chargée ; le gainage latéral fait un travail proche sans cette flexion.",
+      "implementTypes": [
+        "dumbbell",
+        "single_bar_heavy"
+      ],
+      "equipmentNeeds": [
+        "dumbbell"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": {
+        "maxKg": 12,
+        "unit": "total"
+      },
+      "active": false,
+      "inactiveReason": "Rotation chargée retirée du catalogue de départ",
+      "replacedBy": "Dead bug, bird dog",
+      "deactivatedAt": null
+    },
+    {
+      "name": "Dead bug",
+      "group": "Core",
+      "description": "Dos au sol, bras vers le plafond, genoux à 90°, étendre bras et jambe opposés",
+      "formCues": "Bas du dos collé au sol en permanence, mouvement lent et contrôlé",
+      "intent": "Le tronc qui empêche le dos de se creuser pendant que les membres bougent : le travail de la planche, mais allongée, sans charge sur les épaules ni les poignets.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Bird dog",
+      "group": "Core",
+      "description": "À quatre pattes, étendre simultanément un bras et la jambe opposée",
+      "formCues": "Dos plat et hanches stables, maintenir 2 secondes en extension",
+      "intent": "Stabilité croisée, bras et jambe opposés, bassin qui ne doit pas tourner. Le complément du dead bug : l'un empêche le dos de se creuser, l'autre de tourner.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Mountain climbers",
+      "group": "Core",
+      "description": "Position pompe, ramener les genoux alternativement vers la poitrine",
+      "formCues": "Garder le corps gainé, rythme soutenu mais contrôlé",
+      "intent": "Du gainage transformé en cardio : le tronc tient la planche pendant que le rythme fait monter le souffle. L'option sans saut quand les burpees sont trop pour les genoux.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Hollow Body",
+      "group": "Core",
+      "description": "Dos au sol, bras et jambes tendus légèrement décollés, maintenir la position",
+      "formCues": "Bas du dos plaqué au sol, nombril rentré, corps en forme de banane",
+      "intent": "Le gainage le plus exigeant du catalogue, corps entier en tension. Dur pour le bas du dos : le dead bug demande un travail proche avec moins de contrainte.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": false,
+      "inactiveReason": "Remplacé dans le catalogue de départ par un gainage plus simple",
+      "replacedBy": "Dead bug + gainage latéral",
+      "deactivatedAt": null,
+      "metric": "seconds"
+    },
+    {
+      "name": "Planche dynamique",
+      "group": "Core",
+      "description": "Alterner entre position planche sur les mains et sur les avant-bras",
+      "formCues": "Corps gainé, hanches stables (pas de rotation), monter et descendre un bras à la fois",
+      "intent": "Une planche qui doit rester immobile pendant que les bras montent et descendent : le tronc résiste à la rotation et les épaules travaillent en plus. Une marche au-dessus du gainage statique.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Relevé de jambes suspendu",
+      "group": "Core",
+      "description": "Suspendue à la barre, monter les jambes tendues vers l'avant",
+      "formCues": "Ne pas balancer, monter par les abdos et non par l'élan, descendre en contrôle",
+      "intent": "Le gainage sous tension maximale : abdos profonds et bas du ventre, sans écraser le bas du dos au sol.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "haute",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Genoux à la poitrine suspendu",
+      "group": "Core",
+      "description": "Suspendue à la barre, monter les genoux vers la poitrine",
+      "formCues": "Bassin qui s'enroule en haut du mouvement, pas de balancier, descendre lentement",
+      "intent": "La version accessible du relevé de jambes suspendu — même travail, bras de levier plus court.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [
+        "pullup_bar"
+      ],
+      "perSide": false,
+      "barHeight": "haute",
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Sit-up",
+      "group": "Core",
+      "description": "Dos au sol, genoux pliés, remonter le buste complet jusqu'à s'asseoir",
+      "formCues": "Ne pas tirer sur la nuque, dérouler le dos vertèbre par vertèbre, redescendre en contrôle",
+      "intent": "Version complète du crunch, amplitude plus grande. Flexion vertébrale répétée sur une grande amplitude ; le crunch fait un travail proche sans cette amplitude.",
+      "implementTypes": [
+        "bodyweight"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": false,
+      "inactiveReason": "Flexion répétée retirée du catalogue de départ",
+      "replacedBy": "Dead bug, crunch",
+      "deactivatedAt": null
+    },
+    {
+      "name": "Elliptique",
+      "group": "Cardio",
+      "description": "Machine cardio, mouvement fluide bras et jambes, faible impact",
+      "formCues": "Dos droit, pousser avec les talons, résistance modérée",
+      "intent": "Cardio sans impact et bras compris : le choix des jours où les jambes ont déjà donné mais où le souffle peut encore travailler. Réservé à la salle.",
+      "implementTypes": [
+        "cardio"
+      ],
+      "equipmentNeeds": [
+        "machine"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Tapis de course",
+      "group": "Cardio",
+      "description": "Marche ou course sur tapis, régler vitesse et inclinaison",
+      "formCues": "Ne pas se tenir aux barres, bras balancés naturellement",
+      "intent": "La course avec vitesse et pente réglées au dixième, donc un effort reproductible d'une séance à l'autre — ce que l'extérieur ne permet pas. La contrepartie est le déplacement jusqu'à la salle.",
+      "implementTypes": [
+        "cardio"
+      ],
+      "equipmentNeeds": [
+        "machine"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Rameur",
+      "group": "Cardio",
+      "description": "Machine cardio, tirer la poignée vers le ventre en poussant avec les jambes",
+      "formCues": "Ordre : jambes → dos → bras. Retour : bras → dos → jambes",
+      "intent": "Le seul cardio qui fait tirer le dos, ce qui compense des séances riches en poussée. Exigeant techniquement : mal exécuté, c'est le bas du dos qui encaisse.",
+      "implementTypes": [
+        "cardio"
+      ],
+      "equipmentNeeds": [
+        "machine"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Vélo",
+      "group": "Cardio",
+      "description": "Vélo stationnaire, régler la selle à bonne hauteur",
+      "formCues": "Jambe quasi tendue en bas de pédalage, cadence régulière",
+      "intent": "Cardio assis, impact nul : celui qui reste possible quand les genoux, les chevilles ou la fatigue interdisent de courir. À la salle, comme les autres machines.",
+      "implementTypes": [
+        "cardio"
+      ],
+      "equipmentNeeds": [
+        "machine"
+      ],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    },
+    {
+      "name": "Course",
+      "group": "Cardio",
+      "description": "Course à pied en extérieur",
+      "formCues": "Attaque médio-pied, pas courts, respiration régulière",
+      "intent": "Cardio sans matériel et en extérieur — le plus simple à caser un jour où la séance de force saute.",
+      "implementTypes": [
+        "cardio"
+      ],
+      "equipmentNeeds": [],
+      "perSide": false,
+      "barHeight": null,
+      "ceiling": null,
+      "active": true,
+      "inactiveReason": null,
+      "replacedBy": null,
+      "deactivatedAt": null
+    }
+  ],
+  "aliases": {
+    "Développé couché": "Développé couché au sol",
+    "Dips": "Dips sur chaise",
+    "Tirage vertical": "Tirage vertical élastique"
+  },
+  "forbiddenNames": [
+    {
+      "name": "Hip thrust",
+      "reason": "Nécessite un banc",
+      "replacedBy": "Pont fessier / pont unilatéral",
+      "date": null
+    }
+  ]
+}

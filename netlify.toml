@@ -1,0 +1,29 @@
+[build]
+  command = "npm run build"
+  publish = "dist"
+  # The coach lives in edge-functions/ rather than functions/ because a regular
+  # function cannot stream for longer than 10 seconds — see "Coach chat" in
+  # CLAUDE.md. Its route is declared in the file itself (export const config).
+  edge_functions = "netlify/edge-functions"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Baseline security headers. No Content-Security-Policy yet: Google Fonts and
+# the inline styles need an audit first, and a wrong CSP breaks the app.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "same-origin"
