@@ -12,7 +12,8 @@ const MISTRAL_BASE = "https://api.mistral.ai/v1/";
  * Large 4, the five-case evals and the replays) is in the belle-forme-coach
  * skill; this comment states only what still decides the order.
  *
- * RUNG 1 IS CLAUDE SONNET 5.5, EFFORT "low". OWNER RULING 2026-10-12: Anthropic
+ * RUNG 1 IS CLAUDE SONNET 5.5, EFFORT "medium" (see WIDENED FOR MEDIUM EFFORT
+ * below). OWNER RULING 2026-10-12: Anthropic
  * is accepted for the user's data (US company, inference_geo global, no training on
  * API data), paid from the plan's weekly API credits, so cost is not the
  * variable; judgement and latency are. On replays of that day's four failures
@@ -25,7 +26,7 @@ const MISTRAL_BASE = "https://api.mistral.ai/v1/";
  * Sonnet's first text came at 1.2-4.7 s against Opus's ~7.5 s, its emits in
  * 24-31 s against 60 s, both importing with 0 errors, and its replies were
  * shorter, which is her standing complaint. Thinking cannot be turned off on
- * either; "low" is the control. The thinking text never reaches us (display
+ * either; the effort level is the control. The thinking text never reaches us (display
  * omitted) and the parser would withhold it anyway (anthropic.js).
  *
  * RUNG 2 IS OPUS 5.5, ALSO "low" — a stronger model, never a weaker one (the

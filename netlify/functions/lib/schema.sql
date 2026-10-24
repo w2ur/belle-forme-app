@@ -118,7 +118,7 @@ ALTER TABLE coach_usage ADD COLUMN IF NOT EXISTS rung_retries INTEGER NOT NULL D
 -- the `belle-forme-coach` skill).
 ALTER TABLE coach_usage ADD COLUMN IF NOT EXISTS mode TEXT;
 
--- Added 2026-10-01. zai-glm-5-3 (rung 1) reasons on every request and its
+-- Added 2026-10-01. zai-glm-5-3 (rung 1 at the time) reasons on every request and its
 -- reasoning is billed inside completion_tokens, so a reply's length and its
 -- thinking could no longer be told apart from the table. MUST be applied before
 -- the code that writes it is deployed — recordUsage names the column, a missing

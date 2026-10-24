@@ -103,7 +103,7 @@ openssl rand -hex 32
 
 Rotating either secret is independent of the other. Changing `SYNC_API_KEY` sends every device back to the sign-in screen once; local data and unsent writes are kept and sent after the next sign-in.
 
-**Login throttle** (`netlify/functions/lib/loginThrottle.js`): after **5** wrong passphrases from one client address within **15 minutes**, that address gets HTTP 429 (`Retry-After: 900`) until the window empties, even with the correct passphrase. The sign-in screen then shows its generic server message, « Le rideau est coincé (serveur). Réessaie. » The address is the one Netlify's edge reports; IPv6 addresses are grouped by /64. A correct passphrase clears the address's count. The throttle uses the `login_attempts` table; if that table is missing or the database errors, sign-in still works without the throttle (and logs it). The throttle slows guessing; it does not replace a long passphrase.
+**Login throttle** (`netlify/functions/lib/loginThrottle.js`): after **5** wrong passphrases from one client address within **15 minutes**, that address gets HTTP 429 (`Retry-After: 900`) until the window empties, even with the correct passphrase. The sign-in screen then shows « Trop d'essais, darling. Réessaie dans 15 min. » The address is the one Netlify's edge reports; IPv6 addresses are grouped by /64. A correct passphrase clears the address's count. The throttle uses the `login_attempts` table; if that table is missing or the database errors, sign-in still works without the throttle (and logs it). The throttle slows guessing; it does not replace a long passphrase.
 
 **If the passphrase leaks**, whoever has it can read and change all your data and send coach messages billed to your AI accounts. Change `APP_PASSWORD_HASH` **and** `SYNC_API_KEY`, then redeploy. The spend limits in the next section are the only cap on what a leaked passphrase can cost you.
 
@@ -132,7 +132,7 @@ These two limits are the **only protection** against runaway AI spend: the app h
 6. Optional: attach your own domain, for example `https://coach.example.com`, in the site's domain settings.
 7. Open the site, type your passphrase, and continue with [section 8](#8-first-run-the-profile).
 
-Check: a wrong passphrase shows « Raté, darling. Réessaie. »; « Le rideau est coincé (serveur). Réessaie. » on a correct one usually means `APP_PASSWORD_HASH` or `SYNC_API_KEY` is not set (the function answers 500 « Auth not configured »), or that this address hit the login throttle (429, see [section 4](#4-choose-the-passphrase-and-the-sync-key)).
+Check: a wrong passphrase shows « Raté, darling. Réessaie. »; « Le rideau est coincé (serveur). Réessaie. » on a correct one usually means `APP_PASSWORD_HASH` or `SYNC_API_KEY` is not set (the function answers 500 « Auth not configured »); « Trop d'essais » instead means the login throttle (see [section 4](#4-choose-the-passphrase-and-the-sync-key)).
 
 ### 7. Environment variables reference
 
@@ -359,7 +359,7 @@ openssl rand -hex 32
 
 Changer l'un des deux secrets ne touche pas à l'autre. Changer `SYNC_API_KEY` renvoie chaque appareil une fois à l'écran de connexion ; les données locales et les écritures en attente sont gardées et partent après la reconnexion.
 
-**Limitation des tentatives** (`netlify/functions/lib/loginThrottle.js`) : après **5** phrases de passe fausses depuis une même adresse en **15 minutes**, cette adresse reçoit une erreur HTTP 429 (`Retry-After: 900`) jusqu'à ce que la fenêtre se vide, même avec la bonne phrase. L'écran de connexion affiche alors son message générique d'erreur serveur, « Le rideau est coincé (serveur). Réessaie. » L'adresse est celle que rapporte l'edge de Netlify ; les adresses IPv6 sont regroupées par /64. Une phrase correcte remet le compteur de l'adresse à zéro. La limitation utilise la table `login_attempts` ; si la table manque ou si la base renvoie une erreur, la connexion marche quand même, sans limitation (et le journal le signale). Elle ralentit les essais ; elle ne remplace pas une phrase longue.
+**Limitation des tentatives** (`netlify/functions/lib/loginThrottle.js`) : après **5** phrases de passe fausses depuis une même adresse en **15 minutes**, cette adresse reçoit une erreur HTTP 429 (`Retry-After: 900`) jusqu'à ce que la fenêtre se vide, même avec la bonne phrase. L'écran de connexion affiche alors « Trop d'essais, darling. Réessaie dans 15 min. » L'adresse est celle que rapporte l'edge de Netlify ; les adresses IPv6 sont regroupées par /64. Une phrase correcte remet le compteur de l'adresse à zéro. La limitation utilise la table `login_attempts` ; si la table manque ou si la base renvoie une erreur, la connexion marche quand même, sans limitation (et le journal le signale). Elle ralentit les essais ; elle ne remplace pas une phrase longue.
 
 **Si la phrase de passe fuit**, la personne qui l'a peut lire et modifier toutes tes données et envoyer des messages au coach facturés sur tes comptes d'IA. Change `APP_PASSWORD_HASH` **et** `SYNC_API_KEY`, puis redéploie. Les plafonds de dépense de la section suivante sont la seule limite à ce qu'une phrase fuitée peut te coûter.
 
@@ -388,7 +388,7 @@ Ces deux plafonds sont la **seule protection** contre une dépense d'IA qui s'em
 6. Facultatif : rattache ton propre domaine, par exemple `https://coach.example.com`, dans les réglages de domaine du site.
 7. Ouvre le site, tape ta phrase de passe, et passe à la [section 8](#8-premier-lancement--le-profil).
 
-Vérification : une phrase fausse affiche « Raté, darling. Réessaie. » ; « Le rideau est coincé (serveur). Réessaie. » avec la bonne phrase signifie le plus souvent que `APP_PASSWORD_HASH` ou `SYNC_API_KEY` n'est pas définie (la fonction répond 500 « Auth not configured »), ou que cette adresse a atteint la limite de tentatives (429, voir la [section 4](#4-choisir-la-phrase-de-passe-et-la-clé-de-sync)).
+Vérification : une phrase fausse affiche « Raté, darling. Réessaie. » ; « Le rideau est coincé (serveur). Réessaie. » avec la bonne phrase signifie le plus souvent que `APP_PASSWORD_HASH` ou `SYNC_API_KEY` n'est pas définie (la fonction répond 500 « Auth not configured ») ; « Trop d'essais » signale en revanche la limite de tentatives (voir la [section 4](#4-choisir-la-phrase-de-passe-et-la-clé-de-sync)).
 
 ### 7. Référence des variables d'environnement
 

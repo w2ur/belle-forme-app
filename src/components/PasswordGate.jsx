@@ -1,5 +1,6 @@
 import HeroPhoto from "./HeroPhoto.jsx";
 import { useState } from "react";
+import { loginErrorMessage } from "../lib/loginMessage.js";
 
 // The access password is verified SERVER-SIDE by the /api/login function, which
 // returns the Neon sync credential on success. Nothing sensitive — neither the
@@ -31,11 +32,9 @@ export default function PasswordGate({ onSuccess, reason = null }) {
         const { key } = await res.json();
         localStorage.setItem(SYNC_KEY_STORAGE, key);
         onSuccess();
-      } else if (res.status === 401) {
-        setErrorMsg("Raté, darling. Réessaie.");
-        setPassword("");
       } else {
-        setErrorMsg("Le rideau est coincé (serveur). Réessaie.");
+        setErrorMsg(loginErrorMessage(res.status, res.headers.get("Retry-After")));
+        if (res.status === 401) setPassword("");
       }
     } catch {
       setErrorMsg("Pas de réseau, chérie. Réessaie.");
