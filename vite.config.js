@@ -5,26 +5,42 @@ import tailwindcss from '@tailwindcss/vite'
 import { VitePWA } from 'vite-plugin-pwa'
 import { existsSync } from 'node:fs'
 import { fileURLToPath } from 'node:url'
+import process from 'node:process'
+import { SW_NAVIGATE_DENYLIST } from './src/lib/swDenylist.js'
 
 // The decorative photos are optional (see src/lib/heroPhotos.js): a checkout
 // without public/hero/ builds the same app, minus the pictures — and minus the
 // PWA screenshot that is one of them.
 const heroPhotos = existsSync(fileURLToPath(new URL('./public/hero', import.meta.url)))
 
-export default defineConfig({
-  define: { __HERO_PHOTOS__: JSON.stringify(heroPhotos) },
+// The static demo (`npm run build:demo`, also run by `npm run build`): the same
+// app with invented data, served at /demo/ beside the real one — see
+// src/demo/install.js. `import.meta.env.VITE_DEMO` is a build-time constant, so
+// the real bundle carries no demo code and the demo bundle no API client.
+export default defineConfig(({ mode }) => {
+const demo = mode === 'demo' || process.env.VITE_DEMO === '1'
+return {
+  base: demo ? '/demo/' : '/',
+  define: {
+    __HERO_PHOTOS__: JSON.stringify(heroPhotos),
+    'import.meta.env.VITE_DEMO': JSON.stringify(demo ? '1' : ''),
+  },
   plugins: [
     react(),
     tailwindcss(),
     VitePWA({
+      // No service worker for the demo: on the same origin it would compete
+      // with the real app's, and a visitor has nothing to keep offline.
+      disable: demo,
       registerType: 'prompt',
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,jpg,woff2}'],
+        // The demo lives in dist/demo/ and is not part of the real app.
+        globIgnores: ['demo/**'],
         navigateFallback: '/index.html',
-        // Do NOT cache /api/sync-* responses. localStorage is already the
-        // offline data layer; a stale cached pull was being treated as the
-        // authoritative cloud state and could drop recent local sessions.
-        navigateFallbackDenylist: [/^\/api\//],
+        // Not answered with the cached index.html: /api/ (never cache a pull)
+        // and /demo/ (a separate app on this origin). Reasons in swDenylist.js.
+        navigateFallbackDenylist: SW_NAVIGATE_DENYLIST,
       },
       manifest: {
         id: '/belle-forme/',
@@ -68,6 +84,7 @@ export default defineConfig({
     }),
   ],
   build: {
+    ...(demo ? { outDir: 'dist/demo', emptyOutDir: true } : {}),
     rollupOptions: {
       output: {
         // React in its own chunk. The entry chunk sat at the edge of Vite's
@@ -105,4 +122,5 @@ export default defineConfig({
     testTimeout: 30000,
     hookTimeout: 30000,
   },
+}
 })

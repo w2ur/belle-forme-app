@@ -3,6 +3,7 @@ import CoachConversation from "./CoachConversation.jsx";
 import CoachModeToggle from "./CoachModeToggle.jsx";
 import { evaluatePlanImport, noticeForVerdict } from "../lib/planValidation.js";
 import { PLAN_BUTTON_LABEL } from "../lib/planButtonLabel.js";
+import DemoCoachChips from "../demo/DemoCoachChips.jsx";
 
 /**
  * `chat` is owned by App.jsx, not created here: this component unmounts every
@@ -86,7 +87,10 @@ export default function CoachTab({ chat, onPlanImport, catalog }) {
   return (
     // Fills the viewport minus the shell chrome, instead of the old
     // calc(100vh-220px) — a phone assumption that left ~700px dead on an iPad.
-    <div className="flex h-[calc(100dvh-13rem)] flex-col lg:h-[calc(100dvh-6rem)]">
+    // The demo banner (2.5rem below lg, 3.5rem at lg) sits above the shell, so the demo subtracts it too.
+    <div className={import.meta.env.VITE_DEMO
+      ? "flex h-[calc(100dvh-15.5rem)] flex-col lg:h-[calc(100dvh-9.5rem)]"
+      : "flex h-[calc(100dvh-13rem)] flex-col lg:h-[calc(100dvh-6rem)]"}>
       {/* The toggle replaces the old single-tap "Mon programme de la semaine"
           chip: that chip fired a ~20s schema request with no confirmation and
           nothing to undo, and it was tapped by accident in production
@@ -114,6 +118,8 @@ export default function CoachTab({ chat, onPlanImport, catalog }) {
           </button>
         )}
       </div>
+
+      {import.meta.env.VITE_DEMO && <DemoCoachChips onAsk={chat.ask} busy={chat.busy} />}
 
       <CoachConversation
         messages={chat.messages}

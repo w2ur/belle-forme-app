@@ -26,6 +26,7 @@ import { computePRs } from "./lib/stats.js";
 import SyncIndicator, { SyncCounts } from "./components/SyncIndicator.jsx";
 import PWAUpdateToast from "./components/PWAUpdateToast.jsx";
 import IOSInstallHint from "./components/IOSInstallHint.jsx";
+import DemoBanner from "./demo/DemoBanner.jsx";
 
 // Lazy, like `SeanceSummary`: the lexique and its form are the largest UI in
 // the app and only one tab needs them, and the entry chunk had reached Vite's
@@ -34,7 +35,8 @@ import IOSInstallHint from "./components/IOSInstallHint.jsx";
 const ExercisesTab = lazy(() => import("./components/ExercisesTab.jsx"));
 
 export default function App() {
-  const [authed, setAuthed] = useState(isAuthenticated());
+  // The demo has no gate: it never holds a key and never calls the API.
+  const [authed, setAuthed] = useState(() => (import.meta.env.VITE_DEMO ? true : isAuthenticated()));
   const [authReason, setAuthReason] = useState(null);
 
   // Bumped to remount the shell on a key another tab already replaced.
@@ -60,7 +62,7 @@ export default function App() {
     setAuthed(false);
   }, []);
 
-  if (!authed) {
+  if (!import.meta.env.VITE_DEMO && !authed) {
     return <PasswordGate reason={authReason} onSuccess={() => { setAuthReason(null); setAuthed(true); }} />;
   }
 
@@ -193,6 +195,7 @@ function AppShell({ onAuthLost }) {
 
   return (
     <div className="min-h-dvh bg-primary font-sans lg:pl-[88px]">
+      {import.meta.env.VITE_DEMO && <DemoBanner />}
       {/* Always mounted — see the doc comment on `SideRail` for why hiding it
           entirely (as BottomNav still is, below `lg`) used to break both
           `lg:pl-[88px]` and the sync indicator. */}
@@ -376,9 +379,10 @@ function AppShell({ onAuthLost }) {
       {/* Timer overlay */}
       <Timer isVisible={timerOpen} onClose={() => setTimerOpen(false)} initialSeconds={timerSeconds} autoStart={timerAutoStart} />
 
-      {/* PWA overlays */}
-      <PWAUpdateToast />
-      <IOSInstallHint />
+      {/* PWA overlays — not in the demo, which registers no service worker
+          and is not meant to be installed. */}
+      {!import.meta.env.VITE_DEMO && <PWAUpdateToast />}
+      {!import.meta.env.VITE_DEMO && <IOSInstallHint />}
     </div>
   );
 }

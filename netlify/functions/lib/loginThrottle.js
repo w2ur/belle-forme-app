@@ -19,8 +19,15 @@ import net from "node:net";
  * password clears the address.
  *
  * Per address, not global, so a stranger hammering the endpoint cannot lock the
- * owner out of their own app. The address is the one Netlify's edge stamps on
- * the request (`x-nf-client-connection-ip`); a request without it shares one
+ * owner out of their own app. The address is the one the edge stamps on the
+ * request (`x-nf-client-connection-ip`): Netlify's edge in production, and
+ * `server.mjs` when self-hosted — which drops any client-sent `x-nf-*` header and
+ * writes this one from the socket or, behind a proxy `TRUST_PROXY` names, from
+ * `X-Forwarded-For` (see `clientAddress` there). That makes `server.mjs` the ONLY
+ * supported host off Netlify: the throttle trusts this header whenever it is
+ * present, so anything else in front of these functions (`netlify dev` used as
+ * a server, another adapter) must overwrite it the same way, or a client picks
+ * its own bucket by sending it. A request without it shares one
  * "unknown" bucket rather than escaping the throttle, and an IPv6 address is
  * bucketed by its /64, the smallest block one subscriber normally controls, so
  * rotating inside it does not reset the count.
@@ -54,7 +61,7 @@ function ipv6Prefix64(address) {
   return `${groups.slice(0, 4).map((g) => g.replace(/^0+(?=.)/, "")).join(":")}::/64`;
 }
 
-/** The caller's address as Netlify reports it (IPv6 reduced to its /64), or the shared bucket "unknown". */
+/** The caller's address as the edge reports it (IPv6 reduced to its /64), or the shared bucket "unknown". */
 export function clientIp(headers) {
   const raw = headers?.["x-nf-client-connection-ip"] ?? headers?.["X-Nf-Client-Connection-Ip"];
   if (typeof raw !== "string" || !raw.trim()) return "unknown";

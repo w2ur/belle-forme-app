@@ -15,7 +15,7 @@
 // app and this file stops describing it. Nothing in the app reads the seed at
 // runtime, and this script is the only thing that writes it. Do not try to
 // regenerate the JSON; edit it by hand if a fixture ever needs to change.
-import { neon } from "@neondatabase/serverless";
+import { neonSql } from "../netlify/functions/lib/neonClient.js";
 import seed from "../src/data/catalogSeed.json" with { type: "json" };
 import { seedCatalog } from "./catalog-seed-lib.mjs";
 
@@ -25,7 +25,7 @@ if (!url) {
   process.exit(1);
 }
 
-const { seeded, exercises } = await seedCatalog(neon(url), seed);
+const { seeded, exercises } = await seedCatalog(neonSql(url), seed);
 console.log(
   seeded
     ? `catalog seeded: ${exercises} exercises`

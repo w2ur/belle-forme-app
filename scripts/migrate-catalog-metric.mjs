@@ -18,7 +18,7 @@
 // longer exists. Reading the row, editing it, and writing it back also means
 // every edit the user has made since the day-one seed survives — which
 // `seed-catalog.mjs` would flatten. Do not "simplify" this into that.
-import { neon } from "@neondatabase/serverless";
+import { neonSql } from "../netlify/functions/lib/neonClient.js";
 
 // Matched by NAME because the name is the primary key for her history, and
 // because a catalog entry may have been renamed since the seed — an alias
@@ -34,7 +34,7 @@ if (!url) {
 }
 const write = process.argv.includes("--write");
 
-const sql = neon(url);
+const sql = neonSql(url);
 const [row] = await sql`SELECT data FROM catalog WHERE id = 1`;
 if (!row?.data) {
   console.error("no catalog row — refusing to create one (this is a migration, not a seed)");

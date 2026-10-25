@@ -1,0 +1,115 @@
+# Self-hosted Belle Forme: app + Postgres 17 + a Neon-compatible HTTP proxy.
+#
+#   cp .env.example .env   # then fill APP_PASSWORD_HASH, SYNC_API_KEY, POSTGRES_PASSWORD
+#   docker compose up -d --build
+#
+# The app is published on 127.0.0.1 only: plain HTTP carrying the passphrase
+# and the sync key must not face a network. For any remote access, put a TLS
+# reverse proxy (Caddy, nginx) on this host in front of 127.0.0.1:8888, and set
+# TRUST_PROXY=10.203.0.1 in .env then: its connections reach the container
+# from this stack's network gateway (10.203.0.1, pinned under `networks` below),
+# so without it the login throttle sees one client for all (see .env.example
+# for the nginx header line). The proxy must APPEND to X-Forwarded-For: one that
+# passes the client's header through unchanged (nginx without that line) lets
+# every client pick its own throttle bucket.
+#
+# The functions speak Neon's HTTP protocol (@neondatabase/serverless), so a
+# plain Postgres needs the proxy in front of it. The proxy validates the host
+# of the connection string against its own certificate, which is why the app's
+# NEON_DATABASE_URL names db.localtest.me: that host is never resolved — every
+# query goes to NEON_HTTP_ENDPOINT, and the proxy reaches Postgres through
+# PG_CONNECTION_STRING.
+name: belle-forme
+
+x-db: &db
+  POSTGRES_USER: belleforme
+  POSTGRES_DB: belleforme
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?set POSTGRES_PASSWORD in .env (letters and digits only)}
+
+services:
+  postgres:
+    image: postgres:17
+    environment: *db
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U belleforme -d belleforme"]
+      interval: 3s
+      timeout: 3s
+      retries: 30
+    restart: unless-stopped
+
+  # Applies schema.sql on every `up`. The file is idempotent (IF NOT EXISTS,
+  # CREATE OR REPLACE, DROP ... IF EXISTS), so a new table ships with an update.
+  db-init:
+    image: postgres:17
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PGPASSWORD: ${POSTGRES_PASSWORD}
+    volumes:
+      - ./netlify/functions/lib/schema.sql:/schema.sql:ro
+    command: ["psql", "-h", "postgres", "-U", "belleforme", "-d", "belleforme", "-v", "ON_ERROR_STOP=1", "-q", "-f", "/schema.sql"]
+    restart: "no"
+
+  # https://github.com/TimoWilhelm/local-neon-http-proxy — the image publishes
+  # only a moving `main` tag, so it is pinned by digest (built from upstream
+  # commit 7c86dc3, neon release-proxy-8853, 2026-03-27). To update: pull
+  # `:main`, read its digest, and re-run the docker-smoke workflow.
+  neon-proxy:
+    image: ghcr.io/timowilhelm/local-neon-http-proxy@sha256:cd2ae14edf2feafbc3330492de5c80506f77274c3bd013154cdef697bdeb768a
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      PG_CONNECTION_STRING: postgres://belleforme:${POSTGRES_PASSWORD}@postgres:5432/belleforme
+    healthcheck:
+      # A real query through the proxy, not just an open port.
+      test:
+        - CMD-SHELL
+        - >-
+          curl -sf -X POST http://localhost:4444/sql
+          -H 'Content-Type: application/json'
+          -H 'Neon-Connection-String: postgres://belleforme:${POSTGRES_PASSWORD}@db.localtest.me:5432/belleforme'
+          -d '{"query":"SELECT 1","params":[]}'
+      interval: 3s
+      timeout: 5s
+      retries: 40
+    restart: unless-stopped
+
+  app:
+    build: .
+    env_file: .env
+    environment:
+      NEON_DATABASE_URL: postgres://belleforme:${POSTGRES_PASSWORD}@db.localtest.me:5432/belleforme
+      NEON_HTTP_ENDPOINT: http://neon-proxy:4444/sql
+      # No HOST here on purpose: the image sets HOST=0.0.0.0 itself (Dockerfile),
+      # and docker-smoke should exercise that default. The host side of the port
+      # stays 127.0.0.1 (ports below).
+      PORT: "8888"
+    ports:
+      - "127.0.0.1:${PORT:-8888}:8888"
+    depends_on:
+      db-init:
+        condition: service_completed_successfully
+      neon-proxy:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  pgdata:
+
+# Pinned, so TRUST_PROXY can name one address: a host reverse proxy's
+# connections reach the app from this network's gateway, 10.203.0.1. The range
+# sits outside Docker's default address pools (172.17–31.x, 192.168.x), so it
+# does not collide with networks Docker hands out itself; change the subnet,
+# the gateway and TRUST_PROXY together if it collides with one of yours.
+# UPGRADING an existing stack: run `docker compose down` once first — Docker
+# does not move an existing network to a new subnet.
+networks:
+  default:
+    ipam:
+      config:
+        - subnet: 10.203.0.0/24
+          gateway: 10.203.0.1

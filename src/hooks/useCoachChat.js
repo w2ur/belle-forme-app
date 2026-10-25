@@ -1,5 +1,6 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { getSyncClient } from "../lib/sync.js";
+import { getDemoCoachClient } from "../demo/coach.js";
 import { generateExport } from "../lib/planExport.js";
 import { finalizeStream, stripEchoedAnnotation, stripKeepalive } from "../lib/coachStream.js";
 import { buildCorrectionRequest, summarizeRejectedPlan } from "../lib/planValidation.js";
@@ -147,7 +148,9 @@ const wait = (ms) => new Promise((r) => setTimeout(r, ms));
  * split her memory.
  */
 export default function useCoachChat({ sessions, profile, plan, activeSession = null, onAuthLost }) {
-  const client = getSyncClient();
+  // The demo answers from a scripted, offline coach through this same hook, so
+  // its replies stream and render exactly as the real ones do.
+  const client = import.meta.env.VITE_DEMO ? getDemoCoachClient() : getSyncClient();
   // A 401 here means the same thing as on the sync line: the stored key was
   // rotated. It goes back to the gate (`App.jsx`), not into a « réessaie »
   // banner that no retry can ever clear.
@@ -473,5 +476,7 @@ export default function useCoachChat({ sessions, profile, plan, activeSession = 
     },
     error, dismissError: () => setError(null), reload,
     hasClient: !!client,
+    // Demo only: a suggested question, sent as is and never through the draft.
+    ...(import.meta.env.VITE_DEMO ? { ask: (text) => send(mode, text) } : {}),
   };
 }

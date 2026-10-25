@@ -198,6 +198,8 @@ export function shouldForgetKey({ stored, used }) {
 }
 
 export function getSyncClient() {
+  // The demo never syncs: no client, so the app runs in its local-only mode.
+  if (import.meta.env.VITE_DEMO) return null;
   if (_client) return _client;
   // The credential is the Neon key returned by /api/login and stored at unlock,
   // never a build-time secret embedded in the bundle. Not logged in yet means

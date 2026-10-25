@@ -16,7 +16,7 @@
 // read-modify-write window, and it bumps `updated_at`: every device's next pull
 // picks the change up and the coach rebuilds its prompt from the new version.
 import { readFileSync } from "node:fs";
-import { neon } from "@neondatabase/serverless";
+import { neonSql } from "../netlify/functions/lib/neonClient.js";
 import { planProfilePatch, parsePatchArgs, profilePatchSql } from "./profile-patch-lib.mjs";
 
 let args;
@@ -41,7 +41,7 @@ try {
   process.exit(2);
 }
 
-const sql = neon(url);
+const sql = neonSql(url);
 const rows = await sql`SELECT data FROM profile WHERE id = 1`;
 const existing = rows[0]?.data ?? null;
 const plan = planProfilePatch(existing, patch, { overwrite: args.overwrite });

@@ -1,0 +1,107 @@
+name: docker-smoke
+
+# Proves the self-hosted stack (Dockerfile + compose.yaml) end to end: the
+# image builds, schema.sql applies, the catalog seeds, and the functions reach
+# Postgres through the Neon HTTP proxy — login, a session write, a pull.
+# Paths-filtered because the repo is private and minutes are billed.
+
+on:
+  push:
+    branches: [main]
+    paths: &paths
+      - Dockerfile
+      - .dockerignore
+      - compose.yaml
+      - server.mjs
+      - package.json
+      - package-lock.json
+      - scripts/**
+      - netlify/**
+      # The image builds the front end too, and the functions import src/lib,
+      # src/constants and the catalog seed in src/data.
+      - src/lib/**
+      - src/data/**
+      - src/constants/**
+      - vite.config.js
+      - index.html
+      - .github/workflows/docker-smoke.yml
+  pull_request:
+    paths: *paths
+  workflow_dispatch:
+
+concurrency:
+  group: docker-smoke-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  smoke:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Throwaway secrets
+        run: |
+          pass="ci smoke passphrase ${GITHUB_RUN_ID}"
+          {
+            echo "APP_PASSWORD_HASH=$(printf '%s' "$pass" | sha256sum | cut -d' ' -f1)"
+            echo "SYNC_API_KEY=ci-sync-${GITHUB_RUN_ID}"
+            echo "POSTGRES_PASSWORD=ci${GITHUB_RUN_ID}"
+            # The runner's requests reach the app through the stack's gateway.
+            echo "TRUST_PROXY=10.203.0.1"
+          } > .env
+          echo "PASS=$pass" >> "$GITHUB_ENV"
+
+      - name: Start the stack
+        run: docker compose up -d --build
+
+      - name: Wait for the app
+        run: |
+          for _ in $(seq 1 90); do
+            code=$(curl -s -o /dev/null -w '%{http_code}' http://localhost:8888/api/login || true)
+            [ "$code" = 405 ] && exit 0
+            sleep 2
+          done
+          echo "app never answered 405 on GET /api/login"; exit 1
+
+      - name: Login, write a session, pull it back
+        run: |
+          set -euo pipefail
+          code=$(curl -s -o login.json -w '%{http_code}' -X POST http://localhost:8888/api/login \
+            -H 'Content-Type: application/json' -d "$(jq -nc --arg p "$PASS" '{password: $p}')")
+          [ "$code" = 200 ] || { echo "login: $code"; cat login.json; exit 1; }
+          key=$(jq -er '.key' login.json)
+
+          session='{"action":"upsert","session":{"id":"ci-smoke-1","date":"2026-01-05","name":"CI smoke","data":{"exercises":[]}}}'
+          code=$(curl -s -o write.json -w '%{http_code}' -X POST http://localhost:8888/api/sync-sessions \
+            -H "Authorization: Bearer $key" -H 'Content-Type: application/json' -d "$session")
+          [ "$code" = 200 ] || { echo "sync-sessions: $code"; cat write.json; exit 1; }
+
+          code=$(curl -s -o pull.json -w '%{http_code}' http://localhost:8888/api/sync-pull -H "Authorization: Bearer $key")
+          [ "$code" = 200 ] || { echo "sync-pull: $code"; cat pull.json; exit 1; }
+          jq -e '.sessions | map(.id) | index("ci-smoke-1") != null' pull.json > /dev/null || { echo "session not pulled back"; exit 1; }
+          jq -e '.catalog != null' pull.json > /dev/null || { echo "catalog not seeded"; exit 1; }
+          echo "smoke OK"
+
+      - name: Throttle buckets per forwarded client
+        run: |
+          set -euo pipefail
+          login() { curl -s -o /dev/null -w '%{http_code}' -X POST http://localhost:8888/api/login \
+            -H 'Content-Type: application/json' -H "X-Forwarded-For: $1" -d "$(jq -nc --arg p "$2" '{password: $p}')"; }
+          # Client A burns its 5 attempts; the 6th is throttled, right passphrase or not.
+          for i in 1 2 3 4 5; do
+            code=$(login 198.51.100.1 wrong)
+            [ "$code" = 401 ] || { echo "A attempt $i: expected 401, got $code"; exit 1; }
+          done
+          code=$(login 198.51.100.1 "$PASS"); [ "$code" = 429 ] || { echo "A not throttled: $code"; exit 1; }
+          # Client B, same peer (the gateway), another forwarded address: its own bucket.
+          code=$(login 198.51.100.2 "$PASS"); [ "$code" = 200 ] || { echo "B shared A's bucket: $code"; exit 1; }
+          echo "buckets OK"
+
+      - name: Logs on failure
+        if: failure()
+        run: docker compose logs --no-color
+
+      - name: Tear down
+        if: always()
+        run: docker compose down -v

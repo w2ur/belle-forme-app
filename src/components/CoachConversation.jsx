@@ -87,6 +87,12 @@ export default function CoachConversation({
           compact ? "" : "mx-auto w-full max-w-[65ch]"
         }`}
       >
+        {/* A fade, not a hard edge, where bubbles scroll out under the row above
+            (the mode toggle, the demo's question chips). Zero net height: the
+            negative margin cancels it, so the first bubble does not move. */}
+        {!compact && (
+          <div aria-hidden="true" className="pointer-events-none sticky top-0 z-10 -mb-4 h-4 bg-gradient-to-b from-primary to-transparent" />
+        )}
         {messages.map((m, i) => (
           <Bubble key={i} role={m.role} content={m.content} onImport={onImport} canImport={canImport} catalog={catalog} />
         ))}

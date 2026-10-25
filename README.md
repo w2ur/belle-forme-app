@@ -6,7 +6,12 @@ tagline_en: "A virtual coach. Real sweat."
 
 # Belle Forme
 
-Héberger ta propre copie / self-hosting your own copy: [SELF-HOSTING.md](SELF-HOSTING.md) (English, français).
+Héberger ta propre copie / self-hosting your own copy (English, français) :
+
+- [SELF-HOSTING-BEGINNER.md](SELF-HOSTING-BEGINNER.md) — pas à pas, pour qui n'a jamais ouvert un terminal : GitHub + Netlify + Neon, gratuit, sans Docker / step by step for someone who has never used a terminal, free, no Docker.
+- [SELF-HOSTING.md](SELF-HOSTING.md) — avancé : Docker compose ou Node sous systemd derrière un reverse proxy, ou Netlify + Neon / advanced.
+
+Démo / demo : données inventées, coach scripté, rien n'est envoyé à un serveur. `npm run build && npm start`, puis <http://127.0.0.1:8888/demo/> ; chaque déploiement la sert aussi sous `/demo/`.
 
 App de suivi fitness personnel. Interface en français, pensée pour l'iPad 13" en séance — et utilisable sur téléphone.
 
@@ -82,7 +87,7 @@ Deux niveaux, jamais confondus : une **erreur** bloque l'import (plafond dépass
 ```bash
 npm install          # Installer les dépendances
 npm run dev          # Serveur local (localhost:5173)
-npm run build        # Build production → dist/
+npm run build        # Build production → dist/, puis la démo statique → dist/demo/
 npm run preview      # Prévisualisation du build
 npm run test         # Lancer les tests
 npm run test:watch   # Tests en mode watch

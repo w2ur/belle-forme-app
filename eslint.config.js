@@ -7,7 +7,7 @@ import { defineConfig, globalIgnores } from 'eslint/config'
 export default defineConfig([
   globalIgnores(['dist', '.netlify']),
   {
-    files: ['**/*.{js,jsx}'],
+    files: ['**/*.{js,jsx}', 'server.mjs'],
     extends: [
       js.configs.recommended,
       reactHooks.configs.flat.recommended,
@@ -41,8 +41,8 @@ export default defineConfig([
     },
   },
   {
-    // Netlify Functions and their tests run on Node, not in the browser.
-    files: ['netlify/**/*.js'],
+    // Netlify Functions, the self-hosted server and their tests run on Node, not in the browser.
+    files: ['netlify/**/*.js', 'server.mjs', 'server.test.js'],
     languageOptions: {
       globals: { ...globals.node },
     },

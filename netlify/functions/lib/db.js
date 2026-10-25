@@ -1,12 +1,12 @@
 import crypto from "node:crypto";
-import { neon } from "@neondatabase/serverless";
+import { neonSql } from "./neonClient.js";
 import { env } from "./env.js";
 
 let _sql;
 
 export function getDb() {
   if (!_sql) {
-    _sql = neon(env("NEON_DATABASE_URL"));
+    _sql = neonSql(env("NEON_DATABASE_URL"));
   }
   return _sql;
 }
