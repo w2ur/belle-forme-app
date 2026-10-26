@@ -13,7 +13,7 @@ export default function DemoBanner() {
   return (
     // Below lg a compact 40px band that scrolls away with the page; sticky only
     // at lg, where there is height to spare.
-    <div role="note" className="bg-accent text-white lg:sticky lg:top-0 lg:z-40">
+    <aside aria-label="Démo" className="bg-accent text-white lg:sticky lg:top-0 lg:z-40">
       <div className="mx-auto flex h-10 max-w-[480px] items-center justify-between gap-3 px-5 sm:max-w-2xl lg:h-auto lg:max-w-none lg:px-10 lg:py-1.5">
         <p className="m-0 text-xs font-semibold lg:text-sm">Démo — données fictives</p>
         {/* A 26px box below lg, with the hit area stretched past 44px by the
@@ -29,6 +29,6 @@ export default function DemoBanner() {
           Réinitialiser
         </button>
       </div>
-    </div>
+    </aside>
   );
 }

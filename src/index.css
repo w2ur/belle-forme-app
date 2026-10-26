@@ -4,8 +4,8 @@
   --color-primary: #FAF6F0;
   --color-card: #FFFFFF;
   --color-nav: #F0EDE6;
-  --color-accent: #476F86;
-  --color-accent-glow: rgba(71, 111, 134, 0.18);
+  --color-accent: #41677D;
+  --color-accent-glow: rgba(65, 103, 125, 0.18);
   --color-danger: #B5444D;
   --color-gold: #D4A853;
   --color-gold-text: #876422;
@@ -149,6 +149,6 @@ input[type="number"] {
 .coach-md h1 { font-size: 1.1em; }
 .coach-md h2 { font-size: 1.05em; }
 .coach-md h3, .coach-md h4 { font-size: 1em; }
-.coach-md a { color: #476F86; text-decoration: underline; }
+.coach-md a { color: #41677D; text-decoration: underline; }
 .coach-md code { font-family: var(--font-mono, monospace); font-size: 0.9em; background: #F5F1EB; padding: 0.05rem 0.25rem; border-radius: 0.25rem; }
 .coach-md blockquote { border-left: 3px solid #E4DDD3; padding-left: 0.6rem; margin: 0.4rem 0; color: #544E47; }

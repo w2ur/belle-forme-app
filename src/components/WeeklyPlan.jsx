@@ -20,7 +20,7 @@ export default function WeeklyPlan({ plan, sessions, onStartSession, onNoteSessi
   return (
     <div className="mb-5">
       <div className="mb-3">
-        <h3 className="text-gray-800 text-base font-semibold m-0 font-serif">Programme</h3>
+        <h2 className="text-gray-800 text-base font-semibold m-0 font-serif">Programme</h2>
         <p className="text-muted text-sm mt-0.5">{weekLabel}</p>
       </div>
 

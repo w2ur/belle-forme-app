@@ -209,7 +209,7 @@ function AppShell({ onAuthLost }) {
       />
 
       {/* Compact header — the rail carries this identity at lg and above */}
-      <div className="mx-auto w-full max-w-[480px] sm:max-w-2xl lg:hidden">
+      <header className="mx-auto w-full max-w-[480px] sm:max-w-2xl lg:hidden">
         <div className="flex items-center justify-between px-5 pt-5 pb-3">
           <div className="flex items-center gap-2">
             <h1 className="m-0 font-serif text-2xl font-bold tracking-tight text-gray-800">
@@ -233,7 +233,7 @@ function AppShell({ onAuthLost }) {
         <div className="flex justify-center py-1 text-gold">
           <Icons.ArtDecoDivider />
         </div>
-      </div>
+      </header>
 
       {/* `pb-[100px]` reserves space for `BottomNav`, which is hidden below
           `lg` while the exercise form is open — so the padding must go with
@@ -241,6 +241,8 @@ function AppShell({ onAuthLost }) {
       <main className={`mx-auto w-full max-w-[480px] px-5 pt-4 ${exerciseFormOpen ? "" : "pb-[100px]"}
                        sm:max-w-2xl
                        lg:max-w-none lg:px-10 lg:pt-8 lg:pb-10`}>
+        {/* The visible h1 lives in the compact header, which is hidden at lg; the rail carries the identity there but is not a heading. */}
+        <h1 className="sr-only hidden lg:block">Belle Forme</h1>
         {seanceOpen && seance.state ? (
           <SeanceMode
             state={seance.state}

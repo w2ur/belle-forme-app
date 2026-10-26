@@ -97,6 +97,21 @@ describe("the shipped palette", () => {
     expect(ratio, `muted on border-light is ${ratio.toFixed(2)}:1`).toBeGreaterThanOrEqual(AA_NORMAL);
   });
 
+  // Regression: this commit — "Notes du coach" is text-accent on bg-accent/10, which composites to
+  // a tint of the accent itself (4.4:1 with #476F86); the bare-ground loop above never sees it.
+  // 10% is the tint every tinted card uses (WeeklyPlan, PlanCard, CoachTab, ResumeCard, RestTimer).
+  it("accent text on its own 10% tint meets AA on every ground", () => {
+    const channel = (hex, i) => parseInt(hex.slice(1 + i * 2, 3 + i * 2), 16);
+    const tint = (ground) =>
+      "#" + [0, 1, 2].map((i) => Math.round(channel(COLORS.accent, i) * 0.1 + channel(COLORS[ground], i) * 0.9)
+        .toString(16).padStart(2, "0")).join("");
+    for (const ground of GROUNDS) {
+      const ratio = contrastRatio(COLORS.accent, tint(ground));
+      expect(ratio, `accent on accent/10 over --color-${ground} is ${ratio.toFixed(2)}:1`)
+        .toBeGreaterThanOrEqual(AA_NORMAL);
+    }
+  });
+
   it.each(WHITE_ON_FILL)("white text on the %s fill meets AA", (token) => {
     const ratio = contrastRatio("#FFFFFF", COLORS[token]);
     expect(ratio, `white on --color-${token} is ${ratio.toFixed(2)}:1`)
